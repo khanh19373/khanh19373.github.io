@@ -22,7 +22,8 @@
             width: 80%;
             max-width: 600px;
             position: relative;
-            animation: fadeIn 2s ease-in-out;
+            opacity: 0; /* Bắt đầu với opacity bằng 0 để tạo hiệu ứng hiện dần */
+            animation: fadeIn 2s ease-in-out forwards;
         }
         h1 {
             color: #e74c3c;
@@ -30,12 +31,19 @@
         }
         p {
             font-size: 1.2em;
+            opacity: 0; /* Bắt đầu với opacity bằng 0 để tạo hiệu ứng hiện dần */
+            animation: fadeInText 2s ease-in-out forwards;
+            animation-delay: 1s; /* Độ trễ để hiện dần sau khối container */
         }
         .date, .time-since {
             color: #5bc0de;
             font-weight: bold;
         }
         @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInText {
             from { opacity: 0; }
             to { opacity: 1; }
         }
@@ -53,7 +61,7 @@
             width: 30px;
             height: 30px;
             position: absolute;
-            background: url(' https://e7.pngegg.com/pngimages/61/1002/png-clipart-emoji-heart-emoticon-free-love-heart-love-violet.png ') no-repeat center;
+            background: url('https://e7.pngegg.com/pngimages/61/1002/png-clipart-emoji-heart-emoticon-free-love-heart-love-violet.png') no-repeat center;
             background-size: cover;
             animation: float 10s infinite;
         }
@@ -62,9 +70,11 @@
             to { transform: translateY(-100vh) rotate(720deg); }
         }
     </style>
+    <!-- Thêm ScrollReveal.js từ CDN -->
+    <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <h1>For My Love, Trúc</h1>
         <p>Ngày chúng ta gặp nhau lần đầu tiên: <span class="date">16/4/2024</span></p>
         <p>Em là người đặc biệt nhất trong cuộc đời anh. Mỗi khoảnh khắc bên em đều là những kỷ niệm đáng nhớ.</p>
@@ -73,8 +83,7 @@
     </div>
     <div class="hearts"></div>
     <script>
-        function updateTimeSince() {
-            const startDate = new Date('2024-04-16T00:00:00');
+        function updateTimeSince() { const startDate = new Date('2024-04-16T00:00:00');
             const now = new Date();
             const diff = now - startDate;
             
@@ -85,7 +94,8 @@
 
             document.getElementById('timeSince').textContent = 
                 `${days} ngày, ${hours} giờ, ${minutes} phút, ${seconds} giây`;
-        }  setInterval(updateTimeSince, 1000);
+        }
+        setInterval(updateTimeSince, 1000);
 
         function createHearts() {
             const heartsContainer = document.querySelector('.hearts');
@@ -100,6 +110,14 @@
             }
         }
         createHearts();
+
+        // Sử dụng ScrollReveal để tạo hiệu ứng hiện dần khi cuộn
+        ScrollReveal().reveal('.container', {
+            duration: 2000,
+            origin: 'bottom',
+            distance: '50px',
+            reset: true
+        });
     </script>
 </body>
 </html>
