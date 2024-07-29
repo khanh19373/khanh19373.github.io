@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('https://image.slidesdocs.com/responsive-images/docs/orange-sunshine-on-the-beach-in-summer-page-border-background-word-template_1fb99fb8d2__1131_1600.jpg'); /* Thay 'background.jpg' bằng đường dẫn đến hình nền của bạn */
+            background-image: url('https://image.slidesdocs.com/responsive-images/docs/orange-sunshine-on-the-beach-in-summer-page-border-background-word-template_1fb99fb8d2__1131_1600.jpg'); /* Thay đường dẫn này bằng đường dẫn đến hình nền của bạn */
             background-size: cover;
             color: #fff;
         }
@@ -44,11 +44,23 @@
             font-size: 0.9em;
             color: #ddd;
         }
+
+        /* CSS để tạo hiệu ứng chạy theo hàng */
+        @keyframes marquee {
+            0%   { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .marquee-text {
+            white-space: nowrap;
+            overflow: hidden;
+            animation: marquee 10s linear infinite;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Chào Mừng Đến Với Vựa Mía & Dừa Tươi Thanh Vũ</h1>
+        <h1 class="marquee-text">Chào Mừng Đến Với Vựa Mía & Dừa Tươi Thanh Vũ</h1>
         <p>
             Vựa Mía & Dừa Tươi Thanh Vũ chuyên cung cấp các sản phẩm từ mía và dừa tươi ngon nhất. Chúng tôi cam kết mang đến cho khách hàng những sản phẩm chất lượng, đảm bảo vệ sinh an toàn thực phẩm.
         </p>
@@ -66,4 +78,6 @@
         © 2024 Vựa Mía & Dừa Tươi Thanh Vũ. All rights reserved.
     </footer>
 </body>
+</html>
+
 </html>
